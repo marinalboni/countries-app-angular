@@ -1,1 +1,29 @@
-<p>por-capital works!</p>
+<h2>Por capital:</h2>
+<hr class="my-4">
+
+<div class="row">
+    <div class="col">
+
+        <app-pais-input
+            (onEnter)="buscar( $event )"
+            placeholder="Buscar por capital...">
+        </app-pais-input>
+
+    </div>
+</div>
+
+<hr class="my-4">
+
+<div class="alert alert-danger" *ngIf="hayError; else noHayError">
+    No hemos encontrado nada con el término {{ errorTermino }}
+</div>
+
+<ng-template #noHayError>
+    <div class="row" >
+        <div class="col">
+
+            <app-pais-tabla [listaPaises]="listaPaises"></app-pais-tabla>
+
+        </div>
+    </div>
+</ng-template>

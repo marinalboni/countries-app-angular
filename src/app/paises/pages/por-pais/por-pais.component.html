@@ -3,51 +3,28 @@
 
 <div class="row">
     <div class="col">
-        <form autocomplete="off" (ngSubmit)="buscar()">
-            <input 
-                type="text" 
-                name="termino"
-                class="form-control"
-                placeholder="Buscar país..."
-                [(ngModel)]="termino"
-            >
-        </form>
+
+        <app-pais-input
+            (onEnter)="buscar( $event )"
+            (onDebounce)="sugerencias( $event )"
+            placeholder="Buscar por país...">
+        </app-pais-input>
+
     </div>
 </div>
 
 <hr class="my-4">
 
 <div class="alert alert-danger" *ngIf="hayError; else noHayError">
-    No hemos encontrado nada con el término {{ termino }}
+    No hemos encontrado nada con el término {{ errorTermino }}
 </div>
 
 <ng-template #noHayError>
     <div class="row" >
         <div class="col">
-    
-            <table class="table table-hover">
-                <thead>
-                    <th>#</th>
-                    <th>Bandera</th>
-                    <th>Nombre</th>
-                    <th>Población</th>
-                    <th></th>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let pais of listaPaises; let i=index">
-                        <td>{{ i + 1 }}</td>
-                        <td>
-                            <img [src]="pais.flags.png" alt="{{ pais.name }}" width="30px">
-                        </td>
-                        <td>{{ pais.name.common }}</td>
-                        <td>{{ pais.population | number }}</td>
-                        <td>
-                            <a [routerLink]="['/pais/', pais.cca2]">Ver más...</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-    
+
+            <app-pais-tabla [listaPaises]="listaPaises"></app-pais-tabla>
+
         </div>
     </div>
 </ng-template>
