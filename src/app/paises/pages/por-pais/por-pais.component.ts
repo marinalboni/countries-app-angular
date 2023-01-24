@@ -39,7 +39,6 @@ export class PorPaisComponent {
 
   sugerencias( termino: string ) {
     this.hayError = false;
-    console.log(termino)
   }
 
 }

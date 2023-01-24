@@ -1,1 +1,23 @@
-<p>ver-pais works!</p>
+<div class="alert alert-info" *ngIf="loading">
+    Loading...
+</div>
+
+<div *ngIf="hayError">
+    <h2>{{ countryCode }}</h2>
+    <hr class="my-3">
+    <div class="col-12 alert alert-danger">
+        The code you tried to search does not exist.
+    </div>
+</div>
+
+<div class="row" *ngIf="pais">
+    <h2>{{ pais.name.common }}</h2>
+    <hr class="my-3">
+    <div class="col-4">
+        <img src="{{ pais.flags.png }}" alt="{{ pais.name.common }}">
+    </div>
+
+    <pre class="mt-4">
+        {{ pais | json }}
+    </pre>
+</div>
