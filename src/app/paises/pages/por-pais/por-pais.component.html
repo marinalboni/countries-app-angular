@@ -13,7 +13,13 @@
     </div>
 </div>
 
-<hr class="my-4">
+<ul class="list-group" *ngIf="sugerenciaPaises.length > 0">
+    <li class="list-group-item" *ngFor="let sugerencia of sugerenciaPaises">
+        <a [routerLink]="['/pais', sugerencia.cca2]" class="nav-link">
+            {{ sugerencia.name.common }}
+        </a>
+    </li>
+</ul>
 
 <div class="alert alert-danger" *ngIf="hayError; else noHayError">
     No hemos encontrado nada con el término {{ errorTermino }}
